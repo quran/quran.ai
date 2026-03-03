@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    background: #0c0c0c;
+    color: #e0e0e0;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .card {
+    width: 1200px;
+    height: 630px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    padding: 0 80px 40px 100px;
+  }
+
+  /* Grid background */
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  /* Green glow */
+  .glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    top: -200px;
+    right: -50px;
+    background: rgba(74, 222, 128, 0.05);
+    border-radius: 50%;
+    filter: blur(150px);
+    pointer-events: none;
+  }
+
+  .icon {
+    flex-shrink: 0;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: drop-shadow(0 0 60px rgba(74, 222, 128, 0.1));
+  }
+
+  .text {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #e0e0e0;
+  }
+  .logo .ai { color: #4ade80; }
+
+  .title {
+    font-family: 'Newsreader', serif;
+    font-weight: 300;
+    font-size: 3.8rem;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+  }
+  .title em {
+    font-style: italic;
+    color: #4ade80;
+  }
+
+  .sub {
+    font-family: 'Newsreader', serif;
+    font-weight: 300;
+    font-size: 1.35rem;
+    color: #777;
+    line-height: 1.7;
+    max-width: 620px;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="glow"></div>
+    <img class="icon" src="qaloon-512.png" alt="">
+    <div class="text">
+      <div class="logo">quran<span class="ai">.ai</span></div>
+      <h1 class="title">Building the Quran's<br>infrastructure for <em>AI</em></h1>
+      <p class="sub">Open projects that give AI systems authentic, canonical access to the Quran — its text, translations, commentary, and recitation.</p>
+    </div>
+  </div>
+</body>
+</html>
