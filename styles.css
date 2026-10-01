@@ -14,6 +14,21 @@
   --ref-warm-ink: #4a453d;
   --ref-logo-navy: #00163d;
   --ref-shadow-ink: #080d14;
+  --surface: var(--ref-sepia);
+  --text: var(--ref-navy);
+  --muted: var(--ref-warm-ink);
+  --panel: color-mix(in oklab, var(--ref-sepia) 68%, var(--ref-white));
+  --card: color-mix(in oklab, var(--ref-sepia) 84%, var(--ref-white));
+  --line: color-mix(in oklab, var(--ref-sepia) 75%, var(--ref-warm-ink));
+  --control-line: color-mix(in oklab, var(--ref-sepia) 40%, var(--ref-warm-ink));
+  --gold-ink: color-mix(in oklab, var(--ref-gold) 20%, var(--ref-warm-ink));
+  --upper-light: color-mix(in oklab, var(--ref-sepia) 68%, var(--ref-white));
+  --shadow: color-mix(in oklab, var(--ref-warm-ink) 8%, transparent);
+  --image-shadow-near: color-mix(in oklab, var(--ref-warm-ink) 12%, transparent);
+  --image-shadow-far: color-mix(in oklab, var(--ref-warm-ink) 5%, transparent);
+  --aura-core: color-mix(in oklab, var(--surface) 80%, var(--ref-white));
+  --aura-fringe: color-mix(in oklab, var(--surface) 98%, var(--ref-gold));
+  --grid-line: color-mix(in oklab, var(--muted) 12%, transparent);
   color-scheme: light;
 }
 
@@ -22,15 +37,16 @@
 
 html {
   scroll-behavior: smooth;
-  background: var(--ref-sepia);
+  background: var(--surface);
 }
 
 body {
   margin: 0;
   min-width: 280px;
   min-height: 100vh;
-  background: var(--ref-sepia);
-  color: var(--ref-navy);
+  /* Continue the lighting through wide margins, anchored to the content's left edge. */
+  background: radial-gradient(ellipse at max(0px, calc((100% - 1024px) / 2)) 0, var(--upper-light), transparent 56%), var(--surface);
+  color: var(--text);
   font-family: "DM Sans", system-ui, sans-serif;
 }
 
@@ -48,32 +64,16 @@ img { max-width: 100%; }
 
 .site-shell {
   --unit: calc(100cqw / 740);
-  --surface: var(--ref-sepia);
-  --text: var(--ref-navy);
-  --muted: var(--ref-warm-ink);
-  --panel: color-mix(in oklab, var(--ref-sepia) 68%, var(--ref-white));
-  --card: color-mix(in oklab, var(--ref-sepia) 84%, var(--ref-white));
-  --line: color-mix(in oklab, var(--ref-sepia) 75%, var(--ref-warm-ink));
-  --control-line: color-mix(in oklab, var(--ref-sepia) 40%, var(--ref-warm-ink));
-  --gold-ink: color-mix(in oklab, var(--ref-gold) 20%, var(--ref-warm-ink));
-  --upper-light: color-mix(in oklab, var(--ref-sepia) 68%, var(--ref-white));
-  --shadow: color-mix(in oklab, var(--ref-warm-ink) 8%, transparent);
-  --image-shadow-near: color-mix(in oklab, var(--ref-warm-ink) 12%, transparent);
-  --image-shadow-far: color-mix(in oklab, var(--ref-warm-ink) 5%, transparent);
-  --aura-core: color-mix(in oklab, var(--surface) 80%, var(--ref-white));
-  --aura-fringe: color-mix(in oklab, var(--surface) 98%, var(--ref-gold));
-  --grid-line: color-mix(in oklab, var(--muted) 12%, transparent);
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
   isolation: isolate;
   color: var(--text);
-  background: radial-gradient(ellipse at 0 0, var(--upper-light), transparent 56%), var(--surface);
   font-size: max(12px, calc(14 * var(--unit)));
   line-height: 1.5;
 }
 
-:root[data-theme="navy"] .site-shell {
+:root[data-theme="navy"] {
   --surface: var(--ref-navy);
   --text: var(--ref-sepia);
   --muted: color-mix(in oklab, var(--ref-sepia) 76%, var(--ref-navy));
@@ -88,9 +88,6 @@ img { max-width: 100%; }
   --image-shadow-far: color-mix(in oklab, var(--ref-shadow-ink) 18%, transparent);
   --aura-core: color-mix(in oklab, var(--surface) 92%, var(--ref-gold));
 }
-
-:root[data-theme="navy"], :root[data-theme="navy"] body { background: var(--ref-navy); }
-:root[data-theme="sepia"], :root[data-theme="sepia"] body { background: var(--ref-sepia); }
 
 .site-header {
   display: flex;
