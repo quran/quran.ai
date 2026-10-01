@@ -9,6 +9,8 @@
   const heroActions = hero?.querySelector('.actions');
   const photoFrame = document.querySelector('.hero-photo-frame');
   const photoWindow = document.querySelector('.hero-photo-window');
+  const pageFrame = document.querySelector('.page-frame');
+  const atmosphere = document.querySelector('.hero-atmosphere');
 
   function resolveTheme(preference) {
     return preference === 'system' ? (media.matches ? 'navy' : 'sepia') : preference;
@@ -80,22 +82,53 @@
     photoWindow.style.maskImage = `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
   }
 
-  applyTheme(root.dataset.themePreference || 'system');
-  alignHeroPhoto();
-  roundPhotoCorners();
-
-  if ('ResizeObserver' in window) {
-    const photoResize = new ResizeObserver(roundPhotoCorners);
-    photoResize.observe(photoWindow);
-    const heroResize = new ResizeObserver(alignHeroPhoto);
-    heroResize.observe(document.querySelector('.site-shell'));
-    heroResize.observe(heroCopy);
-  } else {
-    window.addEventListener('resize', () => {
-      alignHeroPhoto();
-      roundPhotoCorners();
+  function positionAtmosphere() {
+    if (!atmosphere || !photoFrame || !pageFrame) return;
+    if (window.innerWidth <= 620) {
+      atmosphere.hidden = true;
+      return;
+    }
+    const stage = document.body.getBoundingClientRect();
+    const photo = photoFrame.getBoundingClientRect();
+    const unit = pageFrame.getBoundingClientRect().width / 740;
+    const photoX = photo.left - stage.left;
+    const photoY = photo.top - stage.top;
+    // Retain the grid's phase and fade around the photo while letting it cross the content edge.
+    const gridX = photoX - 78 * unit;
+    const gridY = photoY - 76 * unit;
+    const gridWidth = photo.width + 78 * unit;
+    const gridHeight = photo.height + 76 * unit;
+    const values = {
+      unit,
+      'photo-x': photoX, 'photo-y': photoY,
+      'photo-width': photo.width, 'photo-height': photo.height,
+      'grid-x': gridX, 'grid-y': gridY,
+      'grid-cx': gridX + .67 * gridWidth, 'grid-cy': gridY + .53 * gridHeight,
+      'grid-rx': .61 * gridWidth, 'grid-ry': .66 * gridHeight
+    };
+    Object.entries(values).forEach(([key, value]) => {
+      atmosphere.style.setProperty(`--${key}`, `${value}px`);
     });
+    atmosphere.hidden = false;
   }
 
-  document.fonts?.ready.then(alignHeroPhoto);
+  function layoutHero() {
+    alignHeroPhoto();
+    roundPhotoCorners();
+    positionAtmosphere();
+  }
+
+  applyTheme(root.dataset.themePreference || 'system');
+  layoutHero();
+
+  if ('ResizeObserver' in window) {
+    const heroResize = new ResizeObserver(layoutHero);
+    heroResize.observe(photoWindow);
+    heroResize.observe(document.body);
+    heroResize.observe(heroCopy);
+  } else {
+    window.addEventListener('resize', layoutHero);
+  }
+
+  document.fonts?.ready.then(layoutHero);
 })();
