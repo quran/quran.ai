@@ -1,0 +1,2 @@
+# Preserve the canonical font license bytes used by the asset checksum map.
+branding/fonts/OFL.txt -text -whitespace
