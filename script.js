@@ -1,9 +1,6 @@
 (() => {
-  const storageKey = 'quran-docs-theme';
   const root = document.documentElement;
-  const themeStatus = document.getElementById('theme-status');
   const media = window.matchMedia('(prefers-color-scheme: dark)');
-  const themeButtons = Array.from(document.querySelectorAll('[data-theme-choice]'));
   const hero = document.querySelector('.hero');
   const heroCopy = document.querySelector('.hero-copy');
   const heroActions = hero?.querySelector('.actions');
@@ -12,34 +9,11 @@
   const pageFrame = document.querySelector('.page-frame');
   const atmosphere = document.querySelector('.hero-atmosphere');
 
-  function resolveTheme(preference) {
-    return preference === 'system' ? (media.matches ? 'navy' : 'sepia') : preference;
+  function applySystemTheme() {
+    root.dataset.theme = media.matches ? 'navy' : 'sepia';
   }
 
-  function applyTheme(preference, announce = false) {
-    const resolved = resolveTheme(preference);
-    root.dataset.themePreference = preference;
-    root.dataset.theme = resolved;
-    themeButtons.forEach((button) => {
-      button.setAttribute('aria-pressed', String(button.dataset.themeChoice === preference));
-    });
-    if (announce && themeStatus) {
-      const label = preference === 'system' ? `System theme, currently ${resolved}` : `${preference} theme`;
-      themeStatus.textContent = label.charAt(0).toUpperCase() + label.slice(1) + '.';
-    }
-  }
-
-  themeButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      const preference = button.dataset.themeChoice;
-      try { localStorage.setItem(storageKey, preference); } catch (_) {}
-      applyTheme(preference, true);
-    });
-  });
-
-  media.addEventListener('change', () => {
-    if (root.dataset.themePreference === 'system') applyTheme('system');
-  });
+  media.addEventListener('change', applySystemTheme);
 
   function alignHeroPhoto() {
     if (!photoFrame || !hero || !heroActions || window.innerWidth <= 620) {
@@ -118,7 +92,7 @@
     positionAtmosphere();
   }
 
-  applyTheme(root.dataset.themePreference || 'system');
+  applySystemTheme();
   layoutHero();
 
   if ('ResizeObserver' in window) {

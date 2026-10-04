@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme-preference="system" data-theme="sepia">
+<html lang="en" data-theme="sepia">
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6N91YL10CK"></script>
@@ -13,18 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
     (() => {
-      const key = 'quran-docs-theme';
-      const allowed = new Set(['system', 'navy', 'sepia']);
-      let preference = 'system';
-      try {
-        const saved = localStorage.getItem(key);
-        if (allowed.has(saved)) preference = saved;
-      } catch (_) {}
-      const resolved = preference === 'system'
-        ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'navy' : 'sepia')
-        : preference;
-      document.documentElement.dataset.themePreference = preference;
-      document.documentElement.dataset.theme = resolved;
+      document.documentElement.dataset.theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'navy' : 'sepia';
     })();
   </script>
 
@@ -51,7 +40,7 @@
   <meta name="twitter:image" content="https://quran.ai/og-image.png?v=20261004">
   <meta name="twitter:image:alt" content="quran.ai — Grounded, in-depth Quran study.">
 
-  <link rel="stylesheet" href="/styles.css?v=20261004">
+  <link rel="stylesheet" href="/styles.css?v=20261004-journey">
 </head>
 <body>
   <div class="hero-atmosphere" aria-hidden="true" hidden></div>
@@ -72,7 +61,7 @@
       <section class="hero" id="study" aria-labelledby="hero-title">
         <div class="hero-copy">
           <h1 id="hero-title">Grounded, in-depth Quran study.</h1>
-          <p class="hero-subtitle">Read. Select. Ask.</p>
+          <p class="hero-subtitle">Read. Select. <em>Ask.</em> <strong>Journey.</strong></p>
           <p class="hero-lead">Explore the Qur’an with AI—follow connections, discover context, and go deeper.</p>
           <div class="actions">
             <a class="button button-primary" href="https://chatgpt.com/plugins/plugin_asdk_app_69aca72176f4819197186bc55da38fe0">
@@ -98,22 +87,23 @@
 
       <section class="study-flow" aria-label="How to study">
         <ol class="steps">
-          <li><span class="step-number" aria-hidden="true">1</span><div><h2>Open the reader</h2><p>Start studying in your AI assistant.</p></div></li>
-          <li><span class="step-number" aria-hidden="true">2</span><div><h2>Select a passage</h2><p>Highlight what interests you—an ayah, a passage, or individual words.</p></div></li>
-          <li><span class="step-number" aria-hidden="true">3</span><div><h2>Ask a question</h2><p>Get grounded answers about your selection, with cited tafsir and Quran.com sources.</p></div></li>
-          <li><span class="step-number" aria-hidden="true">4</span><div><h2>Follow your curiosity</h2><p>Explore linked verses in the reader, then return to the conversation with new questions.</p></div></li>
+          <li><span class="step-number" aria-hidden="true">1</span><div><h2>Open the reader</h2><p>Keep the mushaf beside your conversation.</p></div></li>
+          <li><span class="step-number" aria-hidden="true">2</span><div><h2>Select a passage</h2><p>Select a word, an ayah, or a passage to bring into your question.</p></div></li>
+          <li><span class="step-number" aria-hidden="true">3</span><div><h2>Ask a question</h2><p>Ask in the composer, with your selected passage as context and cited sources in the answer.</p></div></li>
+          <li><span class="step-number" aria-hidden="true">4</span><div><h2>Continue your journey</h2><p>Follow a linked ayah back into the mushaf. Read, select, and ask again.</p></div></li>
         </ol>
       </section>
 
       <section class="demonstration" aria-labelledby="demonstration-title">
         <div class="demonstration-copy">
           <p class="eyebrow">Interactive study</p>
-          <h2 id="demonstration-title">A new way to <br>explore the Quran</h2>
-          <p>Read the Quran, explore word meanings and translations, and ask about the passage you select. Follow related verses to continue your study.</p>
+          <h2 id="demonstration-title">Let one question <br>lead to the next.</h2>
+          <p>Read with the mushaf and conversation side by side. Select a passage, ask about it in the composer, and follow linked ayat back into the reader. Each answer can open another path through the Quran—and your discoveries can become study notes.</p>
         </div>
-        <a class="demonstration-link" href="https://mcp.quran.ai/documentation#interactive-study" aria-label="Learn about Interactive Study">
-          <img class="demonstration-photo" src="/branding/interactive-study-chatgpt.jpg?v=20261004" alt="The Quran reader in ChatGPT, with a word selected in Surah al-Baqarah and its English meaning shown below." width="640" height="891" loading="lazy">
+        <a class="demonstration-link" href="/branding/interactive-study-chatgpt.jpg?v=20261004-journey" target="_blank" rel="noopener" aria-label="View the mushaf and conversation screenshot at full size">
+          <img class="demonstration-photo" src="/branding/interactive-study-chatgpt.jpg?v=20261004-journey" alt="A ChatGPT study conversation beside the mushaf: related ayah links in the answer, ayah 2:280 selected in the reader, and a follow-up question in the composer." width="1440" height="1000" loading="lazy">
         </a>
+        <p class="demonstration-caption">A real study conversation in ChatGPT. Select the image to view it at full size.</p>
       </section>
 
       <p class="technical-setup">Connecting another MCP client?
@@ -153,16 +143,9 @@
         <a href="https://quran.com">Quran.com</a>
         <a href="https://quran.foundation">Quran Foundation</a>
       </div>
-      <div class="theme-picker" role="group" aria-label="Color theme">
-        <span class="theme-label">Theme</span>
-        <button type="button" data-theme-choice="system" aria-pressed="true">System</button>
-        <button type="button" data-theme-choice="navy" aria-pressed="false">Navy</button>
-        <button type="button" data-theme-choice="sepia" aria-pressed="false">Sepia</button>
-      </div>
-      <span class="sr-only" id="theme-status" aria-live="polite"></span>
     </footer>
   </div>
   </div>
-  <script src="/script.js?v=20261001-2"></script>
+  <script src="/script.js?v=20261004-journey"></script>
 </body>
 </html>
