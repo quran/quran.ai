@@ -186,8 +186,8 @@ h1, .hero-subtitle, .steps h2, .demonstration h2, .projects-section h2, .project
 
 .hero h1 { margin: 0 0 calc(16 * var(--unit)); font-size: calc(34.5 * var(--unit)); line-height: 1.035; }
 .hero-subtitle { margin: 0 0 calc(12 * var(--unit)); font-size: calc(27 * var(--unit)); line-height: 1.15; }
-.hero-subtitle em { color: var(--gold-ink); font-style: italic; }
-.hero-subtitle strong { font-weight: 700; }
+.hero-subtitle em { font-style: italic; }
+.hero-subtitle strong { color: var(--gold-ink); font-weight: 700; }
 
 .hero-lead {
   max-width: calc(355 * var(--unit));
