@@ -351,6 +351,10 @@ h1, .hero-subtitle, .steps h2, .demonstration h2, .projects-section h2, .project
   box-shadow: 0 calc(1 * var(--unit)) calc(1.5 * var(--unit)) var(--image-shadow-near), 0 calc(4 * var(--unit)) calc(6 * var(--unit)) var(--image-shadow-far);
 }
 
+.demonstration-link-dark { display: none; }
+[data-theme="navy"] .demonstration-link-light { display: none; }
+[data-theme="navy"] .demonstration-link-dark { display: block; }
+
 .demonstration-photo { display: block; width: 100%; height: auto; object-fit: contain; transition: transform 220ms ease; }
 .demonstration-link:hover .demonstration-photo { transform: scale(1.012); }
 .demonstration-caption { margin: -12px 0 0; color: var(--muted); font-size: max(11px, calc(10 * var(--unit))); line-height: 1.5; }
