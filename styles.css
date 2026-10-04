@@ -342,6 +342,7 @@ h1, .hero-subtitle, .steps h2, .demonstration h2, .projects-section h2, .project
 .demonstration-copy { max-width: 48ch; }
 .demonstration h2 { margin: 0 0 calc(10 * var(--unit)); font-size: calc(27 * var(--unit)); line-height: 1.02; }
 .demonstration-copy > p:not(.eyebrow) { margin: 0; color: var(--muted); font-family: "Times New Roman", Times, serif; font-size: max(12px, calc(13 * var(--unit))); line-height: 1.4; }
+.demonstration-copy > p:not(.eyebrow) + p { margin-top: 1em; }
 
 .demonstration-link {
   display: block;
