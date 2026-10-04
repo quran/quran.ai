@@ -348,7 +348,7 @@ h1, .hero-subtitle, .steps h2, .demonstration h2, .projects-section h2, .project
   box-shadow: 0 calc(1 * var(--unit)) calc(1.5 * var(--unit)) var(--image-shadow-near), 0 calc(4 * var(--unit)) calc(6 * var(--unit)) var(--image-shadow-far);
 }
 
-.demonstration-photo { display: block; width: 100%; height: auto; aspect-ratio: 344 / 188; object-fit: cover; object-position: center; transition: transform 220ms ease; }
+.demonstration-photo { display: block; width: 100%; height: auto; aspect-ratio: 640 / 891; object-fit: contain; transition: transform 220ms ease; }
 .demonstration-link:hover .demonstration-photo { transform: scale(1.012); }
 
 .technical-setup { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: calc(22 * var(--unit)) 0 0; color: var(--muted); font-size: max(11px, calc(12 * var(--unit))); }
