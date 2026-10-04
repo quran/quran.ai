@@ -343,6 +343,7 @@ h1, .hero-subtitle, .steps h2, .demonstration h2, .projects-section h2, .project
 .demonstration h2 { margin: 0 0 calc(10 * var(--unit)); font-size: calc(27 * var(--unit)); line-height: 1.02; }
 .demonstration-copy > p:not(.eyebrow) { margin: 0; color: var(--muted); font-family: "Times New Roman", Times, serif; font-size: max(12px, calc(13 * var(--unit))); line-height: 1.4; }
 .demonstration-copy > p:not(.eyebrow) + p { margin-top: 1em; }
+.study-sources h3 { margin: 0 0 .65em; font-family: "Times New Roman", Times, serif; font-size: max(18px, calc(19 * var(--unit))); font-weight: 400; line-height: 1.2; }
 
 .demonstration-link {
   display: block;
